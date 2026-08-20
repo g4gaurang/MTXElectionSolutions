@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MTX Gov Election Management | Election Operations</title>
-  <meta name="description" content="MTX Gov Election Management supports voter services, election preparation, polling operations, campaign finance, and results reporting.">
+  <title>MTX Elections — Election Management</title>
+  <meta name="description" content="MTX Elections is a configurable platform for state and local election administration, voter services, polling operations, workforce coordination, reporting, and post-election work.">
   <meta name="theme-color" content="#082f49">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23082f49'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='Arial' font-size='24' font-weight='700' fill='white'%3EMTX%3C/text%3E%3C/svg%3E">
   <style>
@@ -251,7 +251,7 @@
     }
     .hero-visual .workbench { margin: -3.25rem 1rem 0; }
     .workbench::before {
-      content: "CONFIGURABLE WORKSPACE";
+      content: "ELECTION OPERATIONS CENTER";
       position: absolute;
       top: -0.8rem;
       right: 1.5rem;
@@ -585,6 +585,62 @@
     .metric-list h3 { margin: 0 0 0.2rem; font-size: 0.98rem; }
     .metric-list p { margin: 0; color: var(--muted); font-size: 0.82rem; }
 
+    .ops-shell {
+      overflow: hidden;
+      border: 1px solid #31586d;
+      border-radius: 1.5rem;
+      background: var(--navy-deep);
+      box-shadow: var(--shadow);
+    }
+    .ops-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.2rem 1.35rem;
+      color: var(--white);
+      border-bottom: 1px solid #31586d;
+    }
+    .ops-header strong { font-size: 1.08rem; }
+    .ops-header span { color: #b8cdd6; font-size: 0.78rem; }
+    .ops-tabs { display: flex; flex-wrap: wrap; gap: 0.55rem; padding: 1rem 1.35rem 0; }
+    .ops-tab {
+      min-height: 2.75rem;
+      padding: 0.55rem 0.85rem;
+      color: #d6e5eb;
+      border: 1px solid #6791a5;
+      border-radius: 999px;
+      background: transparent;
+      cursor: pointer;
+      font-weight: 800;
+    }
+    .ops-tab[aria-pressed="true"] { color: var(--navy); border-color: var(--gold); background: var(--gold); }
+    .ops-grid { display: grid; grid-template-columns: 1.35fr 0.65fr; gap: 1rem; padding: 1.35rem; }
+    .ops-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+    .ops-metric { min-height: 7.2rem; padding: 1rem; border: 1px solid #31586d; border-radius: 0.85rem; background: #0b3a54; }
+    .ops-metric span { display: block; color: #b8cdd6; font-size: 0.75rem; }
+    .ops-metric strong { display: block; margin-top: 0.35rem; color: var(--white); font-size: 1.45rem; line-height: 1.2; }
+    .ops-metric small { display: block; margin-top: 0.45rem; color: #7ad7e8; font-size: 0.7rem; }
+    .incident-panel { padding: 1rem; border-radius: 0.85rem; background: var(--white); }
+    .incident-panel h3 { margin: 0 0 0.8rem; font-size: 1rem; }
+    .incident-list { display: grid; gap: 0.65rem; }
+    .incident-item { padding: 0.75rem; border-left: 4px solid var(--cyan); border-radius: 0 0.6rem 0.6rem 0; background: var(--cloud); }
+    .incident-item.priority { border-left-color: #b45309; }
+    .incident-item strong { display: block; color: var(--navy); font-size: 0.82rem; }
+    .incident-item span { color: var(--muted); font-size: 0.72rem; }
+    .ops-note { margin: 0; padding: 0 1.35rem 1.25rem; color: #b8cdd6; font-size: 0.75rem; }
+
+    .persona-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.8rem; }
+    .persona-card { padding: 1.25rem; border: 1px solid var(--line); border-radius: 1rem; background: var(--white); }
+    .persona-tag { display: block; margin-bottom: 0.65rem; color: var(--cyan-dark); font-size: 0.7rem; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; }
+    .persona-card h3 { margin: 0 0 0.55rem; font-size: 1rem; }
+    .persona-card p { margin: 0; color: var(--muted); font-size: 0.8rem; }
+
+    .controls-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-top: 2rem; }
+    .control-card { padding: 1rem; border: 1px solid #416278; border-radius: 0.85rem; background: rgba(255, 255, 255, 0.05); }
+    .control-card strong { display: block; color: var(--white); font-size: 0.85rem; }
+    .control-card span { display: block; margin-top: 0.3rem; color: #b8cdd6; font-size: 0.75rem; }
+
     .roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
     .roadmap-card {
       position: relative;
@@ -620,12 +676,14 @@
     @media (max-width: 62rem) {
       .nav-links { display: none; }
       .mobile-nav { display: block; margin-left: auto; }
-      .hero-grid, .architecture-grid, .analytics-grid { grid-template-columns: 1fr; }
+      .hero-grid, .architecture-grid, .analytics-grid, .ops-grid { grid-template-columns: 1fr; }
       .hero-visual { max-width: 43rem; }
       .lifecycle { grid-template-columns: repeat(3, 1fr); row-gap: 2rem; }
       .lifecycle::before { display: none; }
       .challenge-grid { grid-template-columns: repeat(2, 1fr); }
       .capability-grid { grid-template-columns: repeat(2, 1fr); }
+      .persona-grid { grid-template-columns: repeat(3, 1fr); }
+      .controls-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 42rem) {
       .container { width: min(100% - 1.5rem, 73rem); }
@@ -638,6 +696,7 @@
       .workspace-grid { grid-template-columns: 1fr; }
       .side-panel { grid-template-columns: repeat(2, 1fr); }
       .proof-grid, .capability-grid, .roadmap { grid-template-columns: 1fr; }
+      .ops-metrics, .persona-grid, .controls-grid { grid-template-columns: 1fr; }
       .challenge-grid { grid-template-columns: 1fr; }
       .proof-item { border-right: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.16); }
       .proof-item:last-child { border-bottom: 0; }
@@ -660,22 +719,23 @@
     <div class="container nav">
       <a class="brand" href="#top">
         <span class="brand-mark" aria-hidden="true">MTX</span>
-        <span>MTX Gov Election Management</span>
+        <span>MTX Elections</span>
       </a>
       <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#challenges">Challenges</a>
         <a href="#lifecycle">Lifecycle</a>
         <a href="#capabilities">Capabilities</a>
+        <a href="#operations">Operations Center</a>
+        <a href="#experiences">Experiences</a>
         <a href="#architecture">Architecture</a>
-        <a href="#analytics">Analytics</a>
         <a href="#roadmap">Roadmap</a>
       </nav>
       <details class="mobile-nav">
         <summary>Menu</summary>
         <nav class="mobile-nav-menu" aria-label="Mobile navigation">
-          <a href="#challenges">Challenges</a>
           <a href="#lifecycle">Lifecycle</a>
           <a href="#capabilities">Capabilities</a>
+          <a href="#operations">Operations Center</a>
+          <a href="#experiences">Experiences</a>
           <a href="#architecture">Architecture</a>
           <a href="#analytics">Analytics</a>
           <a href="#roadmap">Roadmap</a>
@@ -691,11 +751,11 @@
       <div class="container hero-grid">
         <div>
           <span class="eyebrow">Election Management</span>
-          <h1 id="hero-title">Election operations built around officials and voters.</h1>
-          <p class="hero-copy">MTX Gov Election Management connects voter services with election preparation, polling operations, campaign finance, and results reporting.</p>
+          <h1 id="hero-title">Election operations built around officials, workers, and voters.</h1>
+          <p class="hero-copy">MTX Elections connects election preparation, voter services, polling operations, workforce coordination, issue management, reporting, and post-election work through configurable digital experiences and integrations.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#capabilities">Explore product capabilities</a>
-            <a class="button button-secondary" href="#architecture">View the integration model</a>
+            <a class="button button-primary" href="#capabilities">Explore election capabilities</a>
+            <a class="button button-secondary" href="#operations">View the Operations Center</a>
           </div>
           <p class="hero-detail">A configurable election operations layer available on Microsoft, Salesforce, and AWS technology foundations.</p>
         </div>
@@ -705,7 +765,7 @@
             <img src="https://plus.unsplash.com/premium_photo-1704855263443-db03610116c4?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="Ballot being placed in a voting box">
             <figcaption>Support election preparation, field operations, and public reporting.</figcaption>
           </figure>
-          <div class="workbench" aria-label="Interactive MTX Gov Election Management workspace example">
+          <div class="workbench" aria-label="Interactive MTX Elections workspace example">
             <div class="workbench-top">
               <strong id="workspace-title">General election readiness</strong>
               <span class="status-pill" id="workspace-status">Preparation in progress</span>
@@ -747,7 +807,7 @@
       </div>
     </section>
 
-    <section class="proof" aria-label="MTX Gov Election Management product themes">
+    <section class="proof" aria-label="MTX Elections product themes">
       <div class="container proof-grid">
         <div class="proof-item"><strong>State &amp; local</strong><span>election administration workflows</span></div>
         <div class="proof-item"><strong>Multi-cloud</strong><span>technology foundation options</span></div>
@@ -769,7 +829,7 @@
               <h3>Voter records across sources</h3>
               <p>Registration activity, address changes, eligibility information, and voting history may arrive through separate channels.</p>
             </div>
-            <div class="challenge-response"><strong>MTX Gov response</strong><p>Configurable intake, matching, review, history, and integrations support voter record maintenance.</p></div>
+            <div class="challenge-response"><strong>MTX Elections response</strong><p>Configurable intake, matching, review, history, and integrations support voter record maintenance.</p></div>
           </article>
           <article class="challenge-card">
             <div class="challenge-top">
@@ -777,7 +837,7 @@
               <h3>Complex election preparation</h3>
               <p>Districts, contests, candidates, ballot styles, deadlines, and jurisdiction rules must align for each election.</p>
             </div>
-            <div class="challenge-response"><strong>MTX Gov response</strong><p>Election setup workflows connect calendars, districts, contests, candidates, ballots, and approval checkpoints.</p></div>
+            <div class="challenge-response"><strong>MTX Elections response</strong><p>Election setup workflows connect calendars, districts, contests, candidates, ballots, and approval checkpoints.</p></div>
           </article>
           <article class="challenge-card">
             <div class="challenge-top">
@@ -785,7 +845,7 @@
               <h3>Polling readiness at scale</h3>
               <p>Locations, equipment, supplies, accessibility, staffing, training, and contingency tasks require coordinated preparation.</p>
             </div>
-            <div class="challenge-response"><strong>MTX Gov response</strong><p>Readiness workspaces bring polling places, resources, workers, assignments, and open tasks into view.</p></div>
+            <div class="challenge-response"><strong>MTX Elections response</strong><p>Readiness workspaces bring polling places, resources, workers, assignments, and open tasks into view.</p></div>
           </article>
           <article class="challenge-card">
             <div class="challenge-top">
@@ -793,7 +853,7 @@
               <h3>Election Day issue response</h3>
               <p>Field questions, equipment incidents, supply needs, and staffing changes can require time-sensitive coordination.</p>
             </div>
-            <div class="challenge-response"><strong>MTX Gov response</strong><p>Service requests, incident triage, communications, assignments, and status updates support field operations.</p></div>
+            <div class="challenge-response"><strong>MTX Elections response</strong><p>Service requests, incident triage, communications, assignments, and status updates support field operations.</p></div>
           </article>
           <article class="challenge-card">
             <div class="challenge-top">
@@ -801,7 +861,7 @@
               <h3>Filing and disclosure deadlines</h3>
               <p>Candidates and committees may need guidance for registration, periodic filings, amendments, and public disclosure.</p>
             </div>
-            <div class="challenge-response"><strong>MTX Gov response</strong><p>Guided filings, schedules, validation, staff review, notices, and searchable disclosure support configured programs.</p></div>
+            <div class="challenge-response"><strong>MTX Elections response</strong><p>Guided filings, schedules, validation, staff review, notices, and searchable disclosure support configured programs.</p></div>
           </article>
           <article class="challenge-card">
             <div class="challenge-top">
@@ -809,7 +869,7 @@
               <h3>Results and public communication</h3>
               <p>Unofficial reporting, canvass, audit, and certification are distinct stages that require clear status communication.</p>
             </div>
-            <div class="challenge-response"><strong>MTX Gov response</strong><p>Reporting workflows distinguish unofficial results from canvass and certification controlled by election officials.</p></div>
+            <div class="challenge-response"><strong>MTX Elections response</strong><p>Reporting workflows distinguish unofficial results from canvass and certification controlled by election officials.</p></div>
           </article>
         </div>
         <aside class="research-note" aria-label="Industry research sources">
@@ -827,15 +887,15 @@
         <div class="section-head">
           <span class="kicker">Connected election lifecycle</span>
           <h2>Coordinate preparation, voting operations, and election closeout.</h2>
-          <p>MTX Gov Election Management supports configurable work across voter services and election administration while election officials retain statutory authority.</p>
+          <p>MTX Elections supports configurable work across voter services and election administration while election officials retain statutory authority.</p>
         </div>
         <ol class="lifecycle">
           <li><span class="stage-number" aria-hidden="true"></span><h3>Register &amp; maintain</h3><p>Voter registration, updates, list maintenance, history, and public services.</p></li>
           <li><span class="stage-number" aria-hidden="true"></span><h3>Configure &amp; prepare</h3><p>Election calendars, districts, contests, candidates, and readiness tasks.</p></li>
           <li><span class="stage-number" aria-hidden="true"></span><h3>Build &amp; distribute</h3><p>Ballot styles, proofing, production, mail workflows, and tracking.</p></li>
           <li><span class="stage-number" aria-hidden="true"></span><h3>Staff &amp; equip</h3><p>Polling places, workers, training, equipment, supplies, and assignments.</p></li>
-          <li><span class="stage-number" aria-hidden="true"></span><h3>Conduct &amp; support</h3><p>Voting operations, field communications, incidents, and voter assistance.</p></li>
-          <li><span class="stage-number" aria-hidden="true"></span><h3>Canvass, report &amp; close</h3><p>Unofficial reporting, reconciliation, audit support, canvass, and certification.</p></li>
+          <li><span class="stage-number" aria-hidden="true"></span><h3>Conduct &amp; support</h3><p>Early voting, Election Day operations, voter assistance, incidents, and resource coordination.</p></li>
+          <li><span class="stage-number" aria-hidden="true"></span><h3>Canvass, report &amp; close</h3><p>Reconciliation, audit support, canvass workflows, certification support, public reporting, and closeout.</p></li>
         </ol>
       </div>
     </section>
@@ -852,14 +912,71 @@
           <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">02</span><h3>Voter Records &amp; List Maintenance</h3><p>Give authorized staff tools to review, match, resolve potential duplicates, amend, and maintain voter records and history.</p></summary><div class="card-details"><ul><li>Record search and review</li><li>Address and district updates</li><li>Potential duplicate review</li><li>Voter credit and history</li><li>Audit trail</li></ul></div></details>
           <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">03</span><h3>Election Setup &amp; Districting</h3><p>Configure election calendars, jurisdictions, districts, contests, ballot rules, and operational milestones.</p></summary><div class="card-details"><ul><li>Election creation</li><li>District and precinct alignment</li><li>Contest configuration</li><li>Calendar and deadlines</li><li>Approval checkpoints</li></ul></div></details>
           <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">04</span><h3>Candidates, Petitions &amp; Ballot Access</h3><p>Coordinate candidate qualification, committee registration, petition activity, nominations, and ballot access review.</p></summary><div class="card-details"><ul><li>Candidate filings</li><li>Petition tracking</li><li>Qualification review</li><li>Committee relationships</li><li>Correspondence and status</li></ul></div></details>
-          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">05</span><h3>Ballot Design &amp; Production</h3><p>Support ballot style generation, proofing, accessible content preparation, production tracking, and distribution records.</p></summary><div class="card-details"><ul><li>Ballot styles</li><li>Proofing and approvals</li><li>Accessible content support</li><li>Print and inventory status</li><li>Chain-of-custody records</li></ul></div></details>
+          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">05</span><h3>Ballot Administration</h3><p>Support ballot styles, proofing, approval workflows, accessible content coordination, production status, and distribution records.</p></summary><div class="card-details"><ul><li>Ballot styles</li><li>Proofing and approvals</li><li>Accessible content coordination</li><li>Production and inventory status</li><li>Distribution records</li></ul></div></details>
           <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">06</span><h3>Absentee, Mail &amp; Early Voting</h3><p>Coordinate applications, ballot preparation, outbound and returned ballot status, curing activity, and early voting operations.</p></summary><div class="card-details"><ul><li>Application processing</li><li>Ballot issuance status</li><li>Mail tracking connections</li><li>Cure workflow support</li><li>Early voting activity</li></ul></div></details>
-          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">07</span><h3>Polling Places &amp; Resources</h3><p>Manage voting locations, accessibility reviews, equipment, supplies, layouts, contacts, and readiness tasks.</p></summary><div class="card-details"><ul><li>Location and precinct mapping</li><li>Accessibility checklists</li><li>Equipment assignments</li><li>Supply and asset tracking</li><li>Readiness status</li></ul></div></details>
-          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">08</span><h3>Poll Worker Management</h3><p>Support recruitment, qualification, assignment, training, communications, availability, and payment preparation.</p></summary><div class="card-details"><ul><li>Worker profiles</li><li>Role and location assignments</li><li>Training status</li><li>Notifications and reminders</li><li>Attendance and service records</li></ul></div></details>
-          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">09</span><h3>Election Day Operations &amp; Support</h3><p>Connect field communications, service requests, incident triage, resource deployment, and operational status.</p></summary><div class="card-details"><ul><li>Issue intake and triage</li><li>Field assignments</li><li>Equipment and supply requests</li><li>Status communications</li><li>Incident history</li></ul></div></details>
-          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">10</span><h3>Results, Canvass &amp; Certification</h3><p>Support unofficial results reporting, reconciliation, canvass tasks, audit evidence, certification records, and public communication.</p></summary><div class="card-details"><ul><li>Unofficial results publishing</li><li>Reconciliation workflows</li><li>Canvass and audit support</li><li>Certification status</li><li>Results history and reports</li></ul></div></details>
-          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">11</span><h3>Campaign Finance &amp; Public Disclosure</h3><p>Support configured candidate and committee registration, electronic filings, amendments, staff review, and public search.</p></summary><div class="card-details"><ul><li>Contribution and expenditure filings</li><li>Reporting calendars</li><li>Validation and amendments</li><li>Review and correspondence</li><li>Searchable public disclosure</li></ul></div></details>
-          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">12</span><h3>Security, Audit &amp; Integrations</h3><p>Apply role-based access, activity history, monitoring, and APIs across designated election systems and data partners.</p></summary><div class="card-details"><ul><li>Identity and access controls</li><li>Event and change history</li><li>DMV and address data</li><li>ePollbook and ballot tracking connections</li><li>GIS, reporting, and notification APIs</li></ul></div></details>
+          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">07</span><h3>Polling Places &amp; Resources</h3><p>Manage polling locations, vote centers, accessibility readiness, equipment, supplies, assignments, and status.</p></summary><div class="card-details"><ul><li>Location and precinct mapping</li><li>Accessibility readiness</li><li>Equipment assignments</li><li>Supply and asset tracking</li><li>Readiness status</li></ul></div></details>
+          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">08</span><h3>Election Worker Management</h3><p>Support recruitment, profiles, availability, qualification, assignment, training, communications, attendance, and payment preparation.</p></summary><div class="card-details"><ul><li>Worker profiles and availability</li><li>Qualification and assignments</li><li>Training completion</li><li>Notifications and instructions</li><li>Attendance and service records</li></ul></div></details>
+          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">09</span><h3>Election Day Operations &amp; Support</h3><p>Provide an operational command view for issue intake, incident triage, field assignments, escalations, communications, and status.</p></summary><div class="card-details"><ul><li>Issue intake and triage</li><li>Field assignments and escalations</li><li>Equipment and supply requests</li><li>Operational communications</li><li>Incident status and history</li></ul></div></details>
+          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">10</span><h3>Results, Canvass &amp; Certification Support</h3><p>Support unofficial results publishing, reconciliation, canvass tasks, audit evidence, certification workflows, and public status.</p></summary><div class="card-details"><ul><li>Unofficial results publishing</li><li>Reconciliation workflows</li><li>Canvass and audit support</li><li>Certification milestone status</li><li>Historical results and reports</li></ul></div></details>
+          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">11</span><h3>Campaign Finance &amp; Public Disclosure</h3><p>Where administered, support candidate and committee registration, electronic filings, amendments, staff review, and public search.</p></summary><div class="card-details"><ul><li>Contribution and expenditure filings</li><li>Reporting calendars</li><li>Validation and amendments</li><li>Review and correspondence</li><li>Searchable public disclosure</li></ul></div></details>
+          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">12</span><h3>Security, Analytics &amp; Integrations</h3><p>Connect role-based controls, activity history, operational analytics, APIs, and designated election systems.</p></summary><div class="card-details"><ul><li>Least privilege and separation of duties</li><li>Audit, change, and retention history</li><li>Operational monitoring and analytics</li><li>Identity, notifications, and reporting APIs</li><li>Election-system and data connections</li></ul></div></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="operations">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Election Operations Center</span>
+          <h2>See readiness, incidents, and field work in one operational view.</h2>
+          <p>Switch between illustrative pre-election, Election Day, and post-election views. Values demonstrate product behavior and are not MTX client results.</p>
+        </div>
+        <div class="ops-shell">
+          <div class="ops-header">
+            <strong id="ops-title">Pre-election readiness</strong>
+            <span id="ops-status">Illustrative operating view</span>
+          </div>
+          <div class="ops-tabs" role="group" aria-label="Select an Election Operations Center view">
+            <button class="ops-tab" type="button" data-ops-view="pre" aria-pressed="true">Pre-election</button>
+            <button class="ops-tab" type="button" data-ops-view="day" aria-pressed="false">Election Day</button>
+            <button class="ops-tab" type="button" data-ops-view="post" aria-pressed="false">Post-election</button>
+          </div>
+          <div class="ops-grid" aria-live="polite">
+            <div class="ops-metrics">
+              <article class="ops-metric"><span data-ops-label="0">Election readiness</span><strong data-ops-value="0">84%</strong><small data-ops-note="0">Example status</small></article>
+              <article class="ops-metric"><span data-ops-label="1">Polling locations ready</span><strong data-ops-value="1">186 / 204</strong><small data-ops-note="1">Example inventory</small></article>
+              <article class="ops-metric"><span data-ops-label="2">Worker positions filled</span><strong data-ops-value="2">92%</strong><small data-ops-note="2">Example staffing</small></article>
+              <article class="ops-metric"><span data-ops-label="3">Training completion</span><strong data-ops-value="3">88%</strong><small data-ops-note="3">Example progress</small></article>
+              <article class="ops-metric"><span data-ops-label="4">Equipment readiness</span><strong data-ops-value="4">96%</strong><small data-ops-note="4">Example status</small></article>
+              <article class="ops-metric"><span data-ops-label="5">Ballot preparation</span><strong data-ops-value="5">90%</strong><small data-ops-note="5">Example progress</small></article>
+            </div>
+            <aside class="incident-panel" aria-labelledby="ops-attention-title">
+              <h3 id="ops-attention-title">Items requiring attention</h3>
+              <div class="incident-list">
+                <div class="incident-item priority"><strong data-ops-item-title="0">Staffing gaps</strong><span data-ops-item-detail="0">12 positions across 5 locations</span></div>
+                <div class="incident-item"><strong data-ops-item-title="1">Equipment follow-up</strong><span data-ops-item-detail="1">8 readiness checks open</span></div>
+                <div class="incident-item"><strong data-ops-item-title="2">Milestones due</strong><span data-ops-item-detail="2">6 tasks due this week</span></div>
+              </div>
+            </aside>
+          </div>
+          <p class="ops-note">Illustrative prototype values only. Jurisdictions configure indicators, thresholds, roles, and escalation paths.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experiences">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Role-specific experiences</span>
+          <h2>Give each participant the election work and information relevant to their role.</h2>
+          <p>Permissions, tasks, records, and public information are configured for the agency operating model.</p>
+        </div>
+        <div class="persona-grid">
+          <article class="persona-card"><span class="persona-tag">Election administrators</span><h3>Plan and coordinate</h3><p>Election setup, readiness, deadlines, assignments, issues, approvals, and operational visibility.</p></article>
+          <article class="persona-card"><span class="persona-tag">Election workers</span><h3>Prepare and serve</h3><p>Assignments, schedules, training, instructions, communications, and incident reporting.</p></article>
+          <article class="persona-card"><span class="persona-tag">Voters</span><h3>Find trusted information</h3><p>Registration services, election information, polling-place lookup, sample ballots, and accessible guidance.</p></article>
+          <article class="persona-card"><span class="persona-tag">Candidates and filers</span><h3>Meet configured requirements</h3><p>Candidate filings, required actions, deadlines, status, and campaign-finance filings where administered.</p></article>
+          <article class="persona-card"><span class="persona-tag">Election leadership</span><h3>Monitor operations</h3><p>Readiness, staffing, incidents, milestones, operational trends, and post-election status.</p></article>
         </div>
       </div>
     </section>
@@ -869,13 +986,13 @@
         <div class="architecture-copy">
           <span class="kicker">Architecture &amp; integration model</span>
           <h2>Coordinate election work across designated systems.</h2>
-          <p>MTX Gov Election Management can be delivered on Microsoft, Salesforce, or AWS technology foundations based on agency architecture and delivery needs. It connects digital services and operational workflows through modular APIs while designated election systems retain their authoritative roles.</p>
+          <p>MTX Elections is a configurable election operations and workflow layer that can be delivered on Microsoft, Salesforce, or AWS technology foundations. It connects digital services with designated election systems without assuming one system-of-record model for every function.</p>
           <p class="boundary-note"><strong>Election officials retain statutory authority.</strong> The product supports administration and reporting workflows; it does not certify results or replace certified voting and tabulation systems.</p>
         </div>
-        <div class="stack" role="group" aria-label="MTX Gov Election Management architecture stack">
+        <div class="stack" role="group" aria-label="MTX Elections architecture stack">
           <div class="stack-layer"><strong>Voter, filer, and public experiences</strong><span>Registration services, election information, filings, status, notices, disclosures, and results</span></div>
           <div class="stack-layer"><strong>Election office operations</strong><span>Voter records, election setup, ballots, polling, workers, field support, finance, and reporting</span></div>
-          <div class="stack-layer platform"><strong>MTX Gov configurable product layer</strong><span>Election workflows + role-based experiences + APIs + analytics</span></div>
+          <div class="stack-layer platform"><strong>MTX Elections configurable product layer</strong><span>Election workflows + role-based experiences + Operations Center + APIs + analytics</span></div>
           <div class="foundation-wrap">
             <span class="stack-caption">Technology foundation options</span>
             <div class="foundation-row" role="group" aria-label="Available technology foundation options">
@@ -888,11 +1005,23 @@
             <div class="system">Voter registration</div>
             <div class="system">DMV &amp; address data</div>
             <div class="system">GIS &amp; districts</div>
+            <div class="system">Candidate systems</div>
             <div class="system">ePollbooks</div>
             <div class="system">Ballot tracking</div>
             <div class="system">Voting &amp; results systems</div>
+            <div class="system">Campaign finance</div>
+            <div class="system">Documents &amp; records</div>
+            <div class="system">Identity &amp; access</div>
+            <div class="system">Contact center &amp; notices</div>
+            <div class="system">Data warehouse &amp; analytics</div>
           </div>
         </div>
+      </div>
+      <div class="container controls-grid" aria-label="Election security, audit, and accessibility capabilities">
+        <div class="control-card"><strong>Access &amp; duties</strong><span>Role-based permissions, least privilege, identity integration, and separation of duties.</span></div>
+        <div class="control-card"><strong>Activity &amp; change history</strong><span>Reviewable actions, prior and new values, approvals, timestamps, and configurable retention.</span></div>
+        <div class="control-card"><strong>Data &amp; integration protection</strong><span>Controlled exchanges, validation, monitoring, exception handling, and agency-aligned data protection.</span></div>
+        <div class="control-card"><strong>Accessible operations</strong><span>Keyboard support, semantic structure, readable contrast, and support for agency accessibility testing.</span></div>
       </div>
     </section>
 
@@ -901,28 +1030,28 @@
         <div class="section-head">
           <span class="kicker">Recommended analytics</span>
           <h2>Give election leaders a practical view of readiness and operations.</h2>
-          <p>The metrics below are illustrative recommendations for an agency-configured dashboard. They are not production results.</p>
+          <p>The metrics below are illustrative product examples for an agency-configured dashboard. They are not MTX client results.</p>
         </div>
         <div class="analytics-grid">
           <div class="dashboard" role="img" aria-label="Illustrative recommended metrics dashboard for election operations">
             <div class="dashboard-header"><strong>Election operations</strong><span class="illustrative">Illustrative</span></div>
             <div class="metric-grid">
-              <div class="metric"><strong>Voter record activity</strong><span>New, updated, pending review, completed</span></div>
-              <div class="metric"><strong>Election readiness</strong><span>Ballots, locations, workers, equipment</span></div>
-              <div class="metric"><strong>Field operations</strong><span>Open issues, assignments, status, resolution</span></div>
-              <div class="metric"><strong>Filing posture</strong><span>Expected, submitted, amended, overdue</span></div>
+              <div class="metric"><strong>Election readiness · 84%</strong><span>Illustrative rollup across configured milestones</span></div>
+              <div class="metric"><strong>Polling locations · 186 / 204</strong><span>Illustrative locations marked ready</span></div>
+              <div class="metric"><strong>Worker staffing · 92%</strong><span>Illustrative positions filled</span></div>
+              <div class="metric"><strong>Open incidents · 12</strong><span>Illustrative inventory, including 2 critical</span></div>
             </div>
             <div class="metric-bars" aria-hidden="true">
-              <div class="metric-bar"><span><b>Election preparation</b><b>Example view</b></span><i class="width-82"></i></div>
-              <div class="metric-bar"><span><b>Worker assignments</b><b>Example view</b></span><i class="width-66"></i></div>
-              <div class="metric-bar"><span><b>Open field issues</b><b>Example view</b></span><i class="width-48"></i></div>
+              <div class="metric-bar"><span><b>Training completion</b><b>Illustrative · 88%</b></span><i class="width-82"></i></div>
+              <div class="metric-bar"><span><b>Equipment readiness</b><b>Illustrative · 96%</b></span><i class="width-100"></i></div>
+              <div class="metric-bar"><span><b>Ballot preparation</b><b>Illustrative · 90%</b></span><i class="width-82"></i></div>
             </div>
           </div>
           <div class="metric-list">
-            <article><b aria-hidden="true">A</b><div><h3>Readiness &amp; deadlines</h3><p>Milestones, open tasks, dependencies, owners, and due dates.</p></div></article>
-            <article><b aria-hidden="true">B</b><div><h3>Polling operations</h3><p>Locations, workers, equipment, supplies, incidents, and field status.</p></div></article>
-            <article><b aria-hidden="true">C</b><div><h3>Candidates &amp; disclosures</h3><p>Qualification activity, filings, amendments, reviews, and public posting.</p></div></article>
-            <article><b aria-hidden="true">D</b><div><h3>Results &amp; closeout</h3><p>Unofficial reporting, reconciliation, canvass tasks, audits, and certification status.</p></div></article>
+            <article><b aria-hidden="true">A</b><div><h3>Voter services</h3><p>Request volume, status, channel, response time, and information demand.</p></div></article>
+            <article><b aria-hidden="true">B</b><div><h3>Candidate filings</h3><p>Expected, received, under review, actions due, and approved status.</p></div></article>
+            <article><b aria-hidden="true">C</b><div><h3>Campaign-finance posture</h3><p>Where administered: expected filings, amendments, reviews, and public posting.</p></div></article>
+            <article><b aria-hidden="true">D</b><div><h3>Post-election milestones</h3><p>Reconciliation, audit tasks, canvass progress, certification support, and closeout.</p></div></article>
           </div>
         </div>
       </div>
@@ -938,7 +1067,7 @@
         <div class="roadmap">
           <article class="roadmap-card"><span class="roadmap-tag">Stage 1 · Establish</span><h3>Configure the election foundation</h3><p>Set up voter services, election definitions, roles, access, core integrations, reporting, security, accessibility, testing, and training.</p></article>
           <article class="roadmap-card"><span class="roadmap-tag">Stage 2 · Extend</span><h3>Add operational workflows</h3><p>Extend ballots, polling places, workers, field support, candidate filings, campaign finance, and public reporting through shared patterns.</p></article>
-          <article class="roadmap-card"><span class="roadmap-tag">Stage 3 · Assist</span><h3>Introduce governed AI assistance</h3><p>Support voter guidance, document classification and extraction, filing completeness, issue triage, staff summaries, suggested correspondence, and anomaly identification with privacy controls, audit history, and staff review.</p></article>
+          <article class="roadmap-card"><span class="roadmap-tag">Stage 3 · Assist</span><h3>Introduce governed AI assistance</h3><p>Support staff knowledge and procedure search, voter inquiry routing, document classification and extraction, filing completeness, issue triage, summaries, suggested correspondence, and exception identification with staff review.</p></article>
         </div>
         <p class="authority">AI is assistive. Authorized election officials retain decision, canvass, certification, and reporting authority. AI does not determine voter eligibility, ballot access, vote totals, or election outcomes.</p>
       </div>
@@ -948,16 +1077,16 @@
       <div class="container cta-grid">
         <div>
           <h2>Explore a practical path for election operations.</h2>
-          <p>Discuss how MTX Gov Election Management could support priority voter services and election workflows while connecting with designated agency systems.</p>
+          <p>Discuss how MTX Elections could support priority voter services and election workflows while connecting with designated agency systems.</p>
         </div>
-        <a class="button button-secondary" href="mailto:info@mtxgroup.com?subject=MTX%20Gov%20Election%20Management%20discussion">Request an Election Management discussion</a>
+        <a class="button button-secondary" href="mailto:info@mtxgroup.com?subject=MTX%20Elections%20discussion">Request an MTX Elections discussion</a>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="container footer-grid">
-      <span class="footer-brand">MTX Gov Election Management</span>
+      <span class="footer-brand">MTX Elections</span>
       <span>Voter Services &amp; Election Operations</span>
       <span>Product landing-page prototype</span>
     </div>
@@ -999,6 +1128,57 @@
       }
     };
 
+    const operationsViews = {
+      pre: {
+        title: 'Pre-election readiness',
+        metrics: [
+          ['Election readiness', '84%', 'Example status'],
+          ['Polling locations ready', '186 / 204', 'Example inventory'],
+          ['Worker positions filled', '92%', 'Example staffing'],
+          ['Training completion', '88%', 'Example progress'],
+          ['Equipment readiness', '96%', 'Example status'],
+          ['Ballot preparation', '90%', 'Example progress']
+        ],
+        attention: [
+          ['Staffing gaps', '12 positions across 5 locations'],
+          ['Equipment follow-up', '8 readiness checks open'],
+          ['Milestones due', '6 tasks due this week']
+        ]
+      },
+      day: {
+        title: 'Election Day operations',
+        metrics: [
+          ['Locations reporting', '201 / 204', 'Example status'],
+          ['Workers checked in', '95%', 'Example attendance'],
+          ['Equipment operational', '98%', 'Example status'],
+          ['Open incidents', '12', 'Example inventory'],
+          ['Critical incidents', '2', 'Example priority'],
+          ['Field assignments', '7', 'Example dispatch']
+        ],
+        attention: [
+          ['Connectivity issue', 'Technical support assigned'],
+          ['Supply request', 'Field delivery in progress'],
+          ['Worker replacement', 'Backup worker contacted']
+        ]
+      },
+      post: {
+        title: 'Post-election closeout',
+        metrics: [
+          ['Reconciliation', '72%', 'Example progress'],
+          ['Canvass tasks', '61%', 'Example progress'],
+          ['Audit support tasks', '48%', 'Example progress'],
+          ['Results updates', '18', 'Example activity'],
+          ['Open exceptions', '9', 'Example inventory'],
+          ['Certification milestone', 'Scheduled', 'Official-controlled']
+        ],
+        attention: [
+          ['Reconciliation items', '9 exceptions under review'],
+          ['Canvass documentation', '4 records awaiting upload'],
+          ['Closeout milestones', '3 tasks due this week']
+        ]
+      }
+    };
+
     const workspaceTabs = document.querySelectorAll('.workspace-tab');
     const workspaceTitle = document.querySelector('#workspace-title');
     const workspaceStatus = document.querySelector('#workspace-status');
@@ -1027,6 +1207,37 @@
         const nextIndex = event.key === 'Home' ? 0 : event.key === 'End' ? workspaceTabs.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + workspaceTabs.length) % workspaceTabs.length;
         workspaceTabs[nextIndex].focus();
         selectWorkspace(workspaceTabs[nextIndex].dataset.workspace);
+      });
+    });
+
+    const operationsTabs = document.querySelectorAll('.ops-tab');
+    const operationsTitle = document.querySelector('#ops-title');
+
+    function selectOperationsView(viewName) {
+      const view = operationsViews[viewName];
+      operationsTabs.forEach((tab) => {
+        tab.setAttribute('aria-pressed', String(tab.dataset.opsView === viewName));
+      });
+      operationsTitle.textContent = view.title;
+      view.metrics.forEach((metric, index) => {
+        document.querySelector(`[data-ops-label="${index}"]`).textContent = metric[0];
+        document.querySelector(`[data-ops-value="${index}"]`).textContent = metric[1];
+        document.querySelector(`[data-ops-note="${index}"]`).textContent = metric[2];
+      });
+      view.attention.forEach((item, index) => {
+        document.querySelector(`[data-ops-item-title="${index}"]`).textContent = item[0];
+        document.querySelector(`[data-ops-item-detail="${index}"]`).textContent = item[1];
+      });
+    }
+
+    operationsTabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => selectOperationsView(tab.dataset.opsView));
+      tab.addEventListener('keydown', (event) => {
+        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        const nextIndex = event.key === 'Home' ? 0 : event.key === 'End' ? operationsTabs.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + operationsTabs.length) % operationsTabs.length;
+        operationsTabs[nextIndex].focus();
+        selectOperationsView(operationsTabs[nextIndex].dataset.opsView);
       });
     });
   </script>

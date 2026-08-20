@@ -1,4 +1,4 @@
-name: Deploy MTX Gov LPI to GitHub Pages
+name: Deploy MTX Elections to GitHub Pages
 
 on:
   push:
