@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MTX Gov LPI | Licensing, Permitting &amp; Inspections</title>
+  <meta name="description" content="MTX Gov LPI is a configurable, platform-flexible engagement and workflow layer for government licensing, permitting, and inspections.">
+  <meta name="theme-color" content="#082f49">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23082f49'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='Arial' font-size='24' font-weight='700' fill='white'%3EMTX%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      --navy: #082f49;
+      --navy-deep: #062235;
+      --blue: #075985;
+      --cyan: #0891b2;
+      --cyan-dark: #0e7490;
+      --mint: #d9f4f1;
+      --gold: #f5b544;
+      --ink: #142b3a;
+      --muted: #4d6371;
+      --line: #cbdde5;
+      --cloud: #f4f8fa;
+      --white: #ffffff;
+      --shadow: 0 22px 60px rgba(8, 47, 73, 0.13);
+      --radius: 1.25rem;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--white);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    img, svg { max-width: 100%; }
+    .container { width: min(73rem, calc(100% - 2.5rem)); margin-inline: auto; }
+    .skip-link {
+      position: fixed;
+      z-index: 100;
+      top: 0.75rem;
+      left: 0.75rem;
+      padding: 0.75rem 1rem;
+      color: var(--navy-deep);
+      background: var(--gold);
+      border-radius: 0.5rem;
+      font-weight: 800;
+      transform: translateY(-180%);
+    }
+    .skip-link:focus { transform: translateY(0); }
+    :focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    .site-header {
+      position: sticky;
+      z-index: 30;
+      top: 0;
+      border-bottom: 1px solid rgba(203, 221, 229, 0.9);
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(14px);
+    }
+    .nav {
+      min-height: 4.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--navy);
+      text-decoration: none;
+      font-weight: 850;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+    .brand-mark {
+      width: 2.75rem;
+      height: 2.75rem;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      background: linear-gradient(145deg, var(--cyan), var(--navy));
+      border-radius: 0.85rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      box-shadow: 0 8px 18px rgba(8, 145, 178, 0.24);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(1rem, 2.2vw, 1.8rem);
+      font-size: 0.9rem;
+      font-weight: 650;
+    }
+    .nav-links a { padding-block: 0.8rem; text-decoration: none; }
+    .nav-links a:hover { color: var(--cyan-dark); }
+    .mobile-nav { display: none; position: relative; }
+    .mobile-nav summary {
+      min-width: 2.75rem;
+      min-height: 2.75rem;
+      display: grid;
+      place-items: center;
+      padding: 0.55rem 0.8rem;
+      color: var(--navy);
+      border: 2px solid #82a9bb;
+      border-radius: 0.65rem;
+      cursor: pointer;
+      font-weight: 800;
+      list-style: none;
+    }
+    .mobile-nav summary::-webkit-details-marker { display: none; }
+    .mobile-nav-menu {
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      right: 0;
+      width: min(18rem, calc(100vw - 1.5rem));
+      display: grid;
+      padding: 0.55rem;
+      border: 1px solid var(--line);
+      border-radius: 0.85rem;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+    .mobile-nav-menu a {
+      min-height: 2.75rem;
+      display: flex;
+      align-items: center;
+      padding: 0.65rem 0.8rem;
+      border-radius: 0.55rem;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .mobile-nav-menu a:hover { color: var(--white); background: var(--navy); }
+    .button {
+      min-height: 2.75rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.75rem 1.1rem;
+      border: 2px solid transparent;
+      border-radius: 0.7rem;
+      text-decoration: none;
+      font-weight: 800;
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary {
+      color: var(--white);
+      background: var(--cyan-dark);
+      box-shadow: 0 10px 22px rgba(14, 116, 144, 0.2);
+    }
+    .button-primary:hover { background: var(--navy); }
+    .button-secondary { color: var(--navy); border-color: #82a9bb; background: var(--white); }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(4.5rem, 8vw, 7.5rem) 0 5rem;
+      background:
+        radial-gradient(circle at 88% 5%, rgba(8, 145, 178, 0.18), transparent 28rem),
+        linear-gradient(135deg, #f8fcfd 0%, #edf7f8 55%, #ffffff 100%);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -12rem;
+      bottom: -18rem;
+      width: 36rem;
+      height: 36rem;
+      border: 1px solid rgba(8, 145, 178, 0.2);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4rem rgba(8, 145, 178, 0.035), 0 0 0 8rem rgba(8, 145, 178, 0.025);
+    }
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: clamp(2.5rem, 6vw, 5rem);
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      color: var(--blue);
+      font-size: 0.78rem;
+      font-weight: 850;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 1.8rem; height: 3px; background: var(--cyan); }
+    h1, h2, h3 { color: var(--navy); line-height: 1.13; }
+    h1 {
+      max-width: 13ch;
+      margin: 1.1rem 0 1.4rem;
+      font-size: clamp(2.75rem, 6vw, 5.4rem);
+      letter-spacing: -0.055em;
+    }
+    .hero-copy {
+      max-width: 40rem;
+      margin: 0 0 1.75rem;
+      color: #385463;
+      font-size: clamp(1.08rem, 2vw, 1.28rem);
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+    .hero-detail {
+      margin: 1.35rem 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .hero-visual { position: relative; padding-top: 1.4rem; }
+    .hero-photo {
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid #bfd6df;
+      border-radius: 1.8rem;
+      background: var(--navy);
+      box-shadow: var(--shadow);
+    }
+    .hero-photo img {
+      width: 100%;
+      height: 17rem;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
+    .hero-photo figcaption {
+      padding: 0.75rem 1rem;
+      color: #d6e5eb;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .workbench {
+      position: relative;
+      z-index: 1;
+      padding: 1.15rem;
+      border: 1px solid #bfd6df;
+      border-radius: 1.8rem;
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: var(--shadow);
+    }
+    .hero-visual .workbench { margin: -3.25rem 1rem 0; }
+    .workbench::before {
+      content: "CONFIGURABLE WORKSPACE";
+      position: absolute;
+      top: -0.8rem;
+      right: 1.5rem;
+      padding: 0.38rem 0.7rem;
+      color: var(--navy);
+      background: var(--gold);
+      border-radius: 999px;
+      font-size: 0.65rem;
+      font-weight: 900;
+      letter-spacing: 0.09em;
+    }
+    .workbench-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.5rem 0.4rem 1rem;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.92);
+    }
+    .workbench-top strong { color: var(--navy); }
+    .status-pill {
+      padding: 0.32rem 0.6rem;
+      color: #155e52;
+      background: var(--mint);
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+    .workspace-grid { display: grid; grid-template-columns: 0.7fr 1.3fr; gap: 0.9rem; padding-top: 1rem; background: rgba(255, 255, 255, 0.88); }
+    .workspace-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.9rem;
+    }
+    .workspace-tab {
+      min-height: 2.45rem;
+      padding: 0.5rem 0.7rem;
+      color: var(--blue);
+      border: 1px solid #9bc5d2;
+      border-radius: 999px;
+      background: var(--white);
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+    .workspace-tab[aria-pressed="true"] { color: var(--white); border-color: var(--cyan-dark); background: var(--cyan-dark); }
+    .side-panel { display: grid; align-content: start; gap: 0.45rem; }
+    .side-item {
+      padding: 0.72rem;
+      color: #46606e;
+      background: var(--cloud);
+      border-radius: 0.65rem;
+      font-size: 0.75rem;
+      font-weight: 750;
+    }
+    .side-item.active { color: var(--white); background: var(--navy); }
+    .case-panel { padding: 1rem; border: 1px solid var(--line); border-radius: 0.9rem; }
+    .case-panel h2 { margin: 0 0 0.9rem; font-size: 1rem; }
+    .case-row { margin-top: 0.85rem; }
+    .case-row span { display: flex; justify-content: space-between; gap: 0.5rem; color: var(--muted); font-size: 0.72rem; }
+    .meter { height: 0.45rem; margin-top: 0.35rem; overflow: hidden; background: #e7eef2; border-radius: 999px; }
+    .meter i { display: block; height: 100%; background: linear-gradient(90deg, var(--cyan), var(--blue)); border-radius: inherit; }
+    .width-100 { width: 100%; }
+    .width-82 { width: 82%; }
+    .width-66 { width: 66%; }
+    .width-64 { width: 64%; }
+    .width-48 { width: 48%; }
+    .width-18 { width: 18%; }
+
+    .proof { color: var(--white); background: var(--navy); }
+    .proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .proof-item { padding: 2rem; text-align: center; border-right: 1px solid rgba(255, 255, 255, 0.16); }
+    .proof-item:last-child { border-right: 0; }
+    .proof-item strong { display: block; font-size: clamp(1.65rem, 4vw, 2.45rem); line-height: 1.1; }
+    .proof-item span { display: block; margin-top: 0.45rem; color: #d4e6ed; font-size: 0.86rem; }
+
+    .section { padding: clamp(4.5rem, 8vw, 7rem) 0; }
+    .section-soft { background: var(--cloud); }
+    .section-dark { color: #d6e5eb; background: var(--navy-deep); }
+    .section-dark h2, .section-dark h3 { color: var(--white); }
+    .section-head { max-width: 49rem; margin-bottom: 2.5rem; }
+    .section-head h2 {
+      margin: 0.7rem 0 1rem;
+      font-size: clamp(2.1rem, 4vw, 3.55rem);
+      letter-spacing: -0.04em;
+    }
+    .section-head p { margin: 0; color: var(--muted); font-size: 1.08rem; }
+    .section-dark .section-head p { color: #b8cdd6; }
+    .kicker { color: var(--cyan-dark); font-size: 0.75rem; font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase; }
+    .section-dark .kicker { color: #6fd3e8; }
+
+    .challenge-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .challenge-card {
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: 0 8px 28px rgba(8, 47, 73, 0.06);
+    }
+    .challenge-top { padding: 1.45rem 1.45rem 1.15rem; }
+    .challenge-number {
+      display: block;
+      margin-bottom: 0.65rem;
+      color: var(--cyan-dark);
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .challenge-card h3 { margin: 0 0 0.55rem; font-size: 1.08rem; }
+    .challenge-card p { margin: 0; color: var(--muted); font-size: 0.88rem; }
+    .challenge-response {
+      margin-top: auto;
+      padding: 1rem 1.45rem 1.2rem;
+      border-top: 1px solid #c9e3e7;
+      background: #eef8f8;
+    }
+    .challenge-response strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: var(--navy);
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .research-note {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-top: 1.25rem;
+      padding: 1rem 1.2rem;
+      color: #385463;
+      border-left: 4px solid var(--cyan);
+      background: #edf5f7;
+      border-radius: 0 0.75rem 0.75rem 0;
+      font-size: 0.82rem;
+    }
+    .research-links { display: flex; flex: 0 0 auto; gap: 1rem; flex-wrap: wrap; }
+    .research-links a { color: var(--blue); font-weight: 800; }
+
+    .lifecycle {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0.8rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: stage;
+    }
+    .lifecycle::before {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      top: 1.55rem;
+      left: 8%;
+      right: 8%;
+      height: 3px;
+      background: #9fc7d6;
+    }
+    .lifecycle li { position: relative; z-index: 1; counter-increment: stage; }
+    .stage-number {
+      width: 3.15rem;
+      height: 3.15rem;
+      display: grid;
+      place-items: center;
+      margin-bottom: 1rem;
+      color: var(--white);
+      background: var(--cyan-dark);
+      border: 5px solid var(--cloud);
+      border-radius: 50%;
+      font-weight: 900;
+    }
+    .stage-number::before { content: counter(stage, decimal-leading-zero); }
+    .lifecycle h3 { margin: 0 0 0.4rem; font-size: 1rem; }
+    .lifecycle p { margin: 0; color: var(--muted); font-size: 0.82rem; }
+
+    .capability-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .card {
+      padding: 1.55rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: 0 8px 28px rgba(8, 47, 73, 0.06);
+    }
+    details.card { padding: 0; overflow: hidden; }
+    .card-summary { display: block; padding: 1.55rem; cursor: pointer; list-style: none; }
+    .card-summary::-webkit-details-marker { display: none; }
+    .card-summary::after {
+      content: "View capability details +";
+      display: block;
+      margin-top: 1rem;
+      color: var(--cyan-dark);
+      font-size: 0.76rem;
+      font-weight: 850;
+    }
+    details[open] .card-summary::after { content: "Hide capability details −"; }
+    .card-details {
+      margin: 0;
+      padding: 0 1.55rem 1.45rem;
+      color: var(--muted);
+      border-top: 1px solid #d9e8ed;
+      font-size: 0.82rem;
+    }
+    .card-details ul {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.4rem 1rem;
+      margin: 0;
+      padding: 1rem 0 0 1.1rem;
+    }
+    .card-details li::marker { color: var(--cyan-dark); }
+    .card-icon {
+      width: 2.65rem;
+      height: 2.65rem;
+      display: grid;
+      place-items: center;
+      margin-bottom: 1rem;
+      color: var(--blue);
+      background: #e3f4f7;
+      border-radius: 0.75rem;
+      font-weight: 900;
+    }
+    .card h3 { margin: 0 0 0.55rem; font-size: 1.08rem; }
+    .card p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+
+    .architecture-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(2.5rem, 6vw, 5rem); align-items: center; }
+    .architecture-copy p { color: #bed1d9; }
+    .boundary-note {
+      padding: 1rem 1.1rem;
+      border-left: 4px solid var(--gold);
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 0 0.75rem 0.75rem 0;
+    }
+    .stack { display: grid; gap: 0.75rem; }
+    .stack-layer {
+      padding: 1rem 1.2rem;
+      color: var(--ink);
+      background: var(--white);
+      border-radius: 0.9rem;
+      box-shadow: 0 9px 25px rgba(0, 0, 0, 0.15);
+    }
+    .stack-layer.platform { color: var(--white); background: linear-gradient(110deg, var(--cyan-dark), var(--blue)); }
+    .stack-layer strong { display: block; margin-bottom: 0.15rem; }
+    .stack-layer span { display: block; color: var(--muted); font-size: 0.82rem; }
+    .stack-layer.platform span { color: #e0f4f7; }
+    .foundation-wrap {
+      padding: 0.9rem;
+      border: 1px solid #416278;
+      border-radius: 0.9rem;
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .stack-caption {
+      display: block;
+      margin-bottom: 0.65rem;
+      color: #b8cdd6;
+      font-size: 0.7rem;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .foundation-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+    .foundation {
+      min-height: 4.4rem;
+      display: grid;
+      place-items: center;
+      padding: 0.7rem;
+      color: var(--white);
+      border: 1px solid #6791a5;
+      border-radius: 0.7rem;
+      background: #12384e;
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+    .system-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+    .system {
+      min-height: 4.6rem;
+      display: grid;
+      place-items: center;
+      padding: 0.7rem;
+      border: 1px solid #416278;
+      border-radius: 0.75rem;
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 750;
+    }
+
+    .analytics-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 1.2rem; align-items: stretch; }
+    .dashboard {
+      padding: 1.3rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+    .dashboard-header { display: flex; justify-content: space-between; gap: 1rem; align-items: center; margin-bottom: 1.2rem; }
+    .dashboard-header strong { color: var(--navy); }
+    .illustrative {
+      padding: 0.35rem 0.55rem;
+      color: #664400;
+      background: #fff0c7;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 850;
+    }
+    .metric-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    .metric { padding: 1rem; border: 1px solid #d8e5ea; border-radius: 0.75rem; background: #f9fcfd; }
+    .metric strong { display: block; color: var(--navy); font-size: 1rem; }
+    .metric span { color: var(--muted); font-size: 0.78rem; }
+    .metric-bars { display: grid; gap: 0.9rem; margin-top: 1rem; }
+    .metric-bar span { display: flex; justify-content: space-between; color: var(--muted); font-size: 0.76rem; }
+    .metric-bar i { display: block; height: 0.55rem; margin-top: 0.3rem; background: var(--cyan); border-radius: 999px; }
+    .metric-list { display: grid; gap: 0.75rem; }
+    .metric-list article {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.9rem;
+      padding: 1rem;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 0.85rem;
+    }
+    .metric-list b { color: var(--cyan-dark); }
+    .metric-list h3 { margin: 0 0 0.2rem; font-size: 0.98rem; }
+    .metric-list p { margin: 0; color: var(--muted); font-size: 0.82rem; }
+
+    .roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .roadmap-card {
+      position: relative;
+      padding: 1.7rem;
+      border: 1px solid var(--line);
+      border-top: 5px solid var(--cyan);
+      border-radius: var(--radius);
+      background: var(--white);
+    }
+    .roadmap-card:nth-child(2) { border-top-color: var(--blue); }
+    .roadmap-card:nth-child(3) { border-top-color: var(--gold); }
+    .roadmap-tag { color: var(--cyan-dark); font-size: 0.72rem; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; }
+    .roadmap-card h3 { margin: 0.65rem 0; font-size: 1.18rem; }
+    .roadmap-card p { margin: 0; color: var(--muted); font-size: 0.88rem; }
+    .authority {
+      margin-top: 1.25rem;
+      padding: 1rem 1.2rem;
+      color: var(--navy);
+      background: var(--mint);
+      border-radius: 0.8rem;
+      font-weight: 750;
+    }
+
+    .cta { padding: clamp(3.5rem, 7vw, 5.5rem) 0; color: var(--white); background: linear-gradient(120deg, var(--blue), var(--navy) 62%, #0e6074); }
+    .cta-grid { display: flex; justify-content: space-between; gap: 2rem; align-items: center; }
+    .cta h2 { max-width: 16ch; margin: 0 0 0.65rem; color: var(--white); font-size: clamp(2rem, 4vw, 3.25rem); letter-spacing: -0.04em; }
+    .cta p { max-width: 42rem; margin: 0; color: #d7e9ef; }
+    .cta .button-secondary { flex: 0 0 auto; }
+    footer { padding: 2rem 0; color: #b8cbd4; background: #041c2b; font-size: 0.82rem; }
+    .footer-grid { display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-brand { color: var(--white); font-weight: 800; }
+
+    @media (max-width: 62rem) {
+      .nav-links { display: none; }
+      .mobile-nav { display: block; margin-left: auto; }
+      .hero-grid, .architecture-grid, .analytics-grid { grid-template-columns: 1fr; }
+      .hero-visual { max-width: 43rem; }
+      .lifecycle { grid-template-columns: repeat(3, 1fr); row-gap: 2rem; }
+      .lifecycle::before { display: none; }
+      .challenge-grid { grid-template-columns: repeat(2, 1fr); }
+      .capability-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 42rem) {
+      .container { width: min(100% - 1.5rem, 73rem); }
+      .nav { min-height: 4.3rem; }
+      .brand span:last-child { font-size: 0.9rem; }
+      .nav > .button { display: none; }
+      .hero { padding-top: 3.8rem; }
+      .hero-photo img { height: 13rem; }
+      .hero-visual .workbench { margin: -2.25rem 0.5rem 0; }
+      .workspace-grid { grid-template-columns: 1fr; }
+      .side-panel { grid-template-columns: repeat(2, 1fr); }
+      .proof-grid, .capability-grid, .roadmap { grid-template-columns: 1fr; }
+      .challenge-grid { grid-template-columns: 1fr; }
+      .proof-item { border-right: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.16); }
+      .proof-item:last-child { border-bottom: 0; }
+      .lifecycle { grid-template-columns: repeat(2, 1fr); }
+      .foundation-row { grid-template-columns: 1fr; }
+      .system-row { grid-template-columns: repeat(2, 1fr); }
+      .research-note { align-items: flex-start; flex-direction: column; }
+      .cta-grid { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true">MTX</span>
+        <span>MTX Gov LPI</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#challenges">Challenges</a>
+        <a href="#lifecycle">Lifecycle</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#analytics">Analytics</a>
+        <a href="#roadmap">Roadmap</a>
+      </nav>
+      <details class="mobile-nav">
+        <summary>Menu</summary>
+        <nav class="mobile-nav-menu" aria-label="Mobile navigation">
+          <a href="#challenges">Challenges</a>
+          <a href="#lifecycle">Lifecycle</a>
+          <a href="#capabilities">Capabilities</a>
+          <a href="#architecture">Architecture</a>
+          <a href="#analytics">Analytics</a>
+          <a href="#roadmap">Roadmap</a>
+          <a href="#contact">Discuss MTX Gov LPI</a>
+        </nav>
+      </details>
+      <a class="button button-primary" href="#contact">Discuss MTX Gov LPI</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Licensing, Permitting &amp; Inspections</span>
+          <h1 id="hero-title">Regulatory services built around the applicant.</h1>
+          <p class="hero-copy">MTX Gov LPI connects guided digital experiences with agency review, inspection, and compliance workflows—while keeping agency systems of record in place.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#capabilities">Explore product capabilities</a>
+            <a class="button button-secondary" href="#architecture">View the integration model</a>
+          </div>
+          <p class="hero-detail">A configurable engagement and workflow layer available on Microsoft, Salesforce, and AWS technology foundations.</p>
+        </div>
+
+        <div class="hero-visual">
+          <figure class="hero-photo">
+            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="Building plans and design materials used in a permitting review">
+            <figcaption>Support plan review and coordinated permitting work.</figcaption>
+          </figure>
+          <div class="workbench" aria-label="Interactive MTX Gov LPI workspace example">
+            <div class="workbench-top">
+              <strong id="workspace-title">Building permit plan review</strong>
+              <span class="status-pill" id="workspace-status">Technical review in progress</span>
+            </div>
+            <div class="workspace-tabs" role="group" aria-label="Select an illustrative LPI workspace">
+              <button class="workspace-tab" type="button" data-workspace="plan" aria-pressed="true">Plan review</button>
+              <button class="workspace-tab" type="button" data-workspace="inspection" aria-pressed="false">Field operations</button>
+              <button class="workspace-tab" type="button" data-workspace="gis" aria-pressed="false">Location intelligence</button>
+            </div>
+            <div class="workspace-grid">
+              <div class="side-panel" aria-hidden="true">
+                <div class="side-item active">Overview</div>
+                <div class="side-item">Plans</div>
+                <div class="side-item">Location</div>
+                <div class="side-item">Field work</div>
+              </div>
+              <div class="case-panel" aria-live="polite">
+                <h2 id="workspace-checklist-title">Review checklist</h2>
+                <div class="case-row">
+                  <span><b data-workspace-label="0">Application &amp; fees</b><b data-workspace-value="0">Complete</b></span>
+                  <div class="meter"><i data-workspace-meter="0" class="width-100"></i></div>
+                </div>
+                <div class="case-row">
+                  <span><b data-workspace-label="1">Plan routing</b><b data-workspace-value="1">Complete</b></span>
+                  <div class="meter"><i data-workspace-meter="1" class="width-100"></i></div>
+                </div>
+                <div class="case-row">
+                  <span><b data-workspace-label="2">Fire &amp; zoning review</b><b data-workspace-value="2">In progress</b></span>
+                  <div class="meter"><i data-workspace-meter="2" class="width-64"></i></div>
+                </div>
+                <div class="case-row">
+                  <span><b data-workspace-label="3">Inspection scheduling</b><b data-workspace-value="3">Pending</b></span>
+                  <div class="meter"><i data-workspace-meter="3" class="width-18"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="proof" aria-label="MTX Gov LPI experience">
+      <div class="container proof-grid">
+        <!-- INTERNAL VALIDATION REQUIRED: confirm supporting evidence before external publication -->
+        <div class="proof-item"><strong>20+ states</strong><span>with LPI solutions delivered</span></div>
+        <!-- INTERNAL VALIDATION REQUIRED: confirm supporting evidence before external publication -->
+        <div class="proof-item"><strong>30+</strong><span>public-sector licensing systems implemented</span></div>
+        <!-- INTERNAL VALIDATION REQUIRED: confirm supporting evidence before external publication -->
+        <div class="proof-item"><strong>60–120 days</strong><span>typical initial program launch, depending on scope and integrations</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="challenges">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Why agencies are modernizing</span>
+          <h2>Legacy LPI operations create friction for applicants and staff.</h2>
+          <p>Common challenges tend to sit between the public experience, regulatory workflow, and the systems agencies already use. MTX Gov LPI addresses that middle layer without requiring every authoritative platform to be replaced.</p>
+        </div>
+        <div class="challenge-grid">
+          <article class="challenge-card">
+            <div class="challenge-top">
+              <span class="challenge-number">Industry pressure 01</span>
+              <h3>Paper and manual intake</h3>
+              <p>Applicants may navigate static forms, unclear requirements, separate payment steps, and limited status information.</p>
+            </div>
+            <div class="challenge-response"><strong>MTX Gov LPI response</strong><p>Guided applications bring rules, fees, payments, document upload, and status into a coordinated digital experience.</p></div>
+          </article>
+          <article class="challenge-card">
+            <div class="challenge-top">
+              <span class="challenge-number">Industry pressure 02</span>
+              <h3>Disconnected tools and data</h3>
+              <p>Staff may move between document repositories, financial tools, GIS, identity services, and case platforms to complete one review.</p>
+            </div>
+            <div class="challenge-response"><strong>MTX Gov LPI response</strong><p>A configurable workflow layer connects through APIs while each agency system retains its designated records.</p></div>
+          </article>
+          <article class="challenge-card">
+            <div class="challenge-top">
+              <span class="challenge-number">Industry pressure 03</span>
+              <h3>Review queues with limited visibility</h3>
+              <p>Missing documents, handoffs, assignments, and aging work can be difficult to track across email, spreadsheets, and separate queues.</p>
+            </div>
+            <div class="challenge-response"><strong>MTX Gov LPI response</strong><p>Role-based workspaces, checklists, routing, and recommended dashboards make work status easier to monitor.</p></div>
+          </article>
+          <article class="challenge-card">
+            <div class="challenge-top">
+              <span class="challenge-number">Industry pressure 04</span>
+              <h3>Field work separated from the case</h3>
+              <p>Inspection scheduling, findings, evidence, notifications, and corrective actions may be managed through disconnected channels.</p>
+            </div>
+            <div class="challenge-response"><strong>MTX Gov LPI response</strong><p>Inspection workflows connect assignments, field results, evidence, findings, and follow-up activity to the regulatory record.</p></div>
+          </article>
+          <article class="challenge-card">
+            <div class="challenge-top">
+              <span class="challenge-number">Industry pressure 05</span>
+              <h3>Policy change creates system work</h3>
+              <p>Fee schedules, required documents, notices, and approval paths change, while older applications can be difficult to adapt.</p>
+            </div>
+            <div class="challenge-response"><strong>MTX Gov LPI response</strong><p>Configurable rules and workflows support program changes and phased expansion across license and permit types.</p></div>
+          </article>
+          <article class="challenge-card">
+            <div class="challenge-top">
+              <span class="challenge-number">Industry pressure 06</span>
+              <h3>Limited transparency and verification</h3>
+              <p>Applicants seek updates, staff respond to status inquiries, and the public needs a dependable way to verify regulatory standing.</p>
+            </div>
+            <div class="challenge-response"><strong>MTX Gov LPI response</strong><p>Self-service status, notifications, digital credentials, and public verification provide clearer access to approved information.</p></div>
+          </article>
+        </div>
+        <aside class="research-note" aria-label="Industry research sources">
+          <span>Industry context is informed by public-sector research on outdated systems, fragmented data, disconnected tools, manual reviews, interoperability, and applicant transparency.</span>
+          <span class="research-links">
+            <a href="https://permitting.innovation.gov/resources/action-plan/">Read the Permitting Technology Action Plan</a>
+            <a href="https://bidenwhitehouse.archives.gov/wp-content/uploads/2024/07/CEQ-E-NEPA-Report-to-Congress_Final-508.pdf">Read the permitting technology report</a>
+          </span>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="lifecycle">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Connected regulatory lifecycle</span>
+          <h2>One path from guided intake to ongoing compliance.</h2>
+          <p>MTX Gov LPI coordinates constituent interactions and staff work across licensing, permitting, and inspections, with configurable steps for each program.</p>
+        </div>
+        <ol class="lifecycle">
+          <li><span class="stage-number" aria-hidden="true"></span><h3>Apply &amp; pay</h3><p>Guided forms, fee calculation, payments, and document upload.</p></li>
+          <li><span class="stage-number" aria-hidden="true"></span><h3>Route &amp; review</h3><p>Validation, queues, checklists, requests, and multi-department review.</p></li>
+          <li><span class="stage-number" aria-hidden="true"></span><h3>Inspect</h3><p>Scheduling, assignment, field results, evidence, and corrective actions.</p></li>
+          <li><span class="stage-number" aria-hidden="true"></span><h3>Decide &amp; issue</h3><p>Staff approval or denial, notices, permits, licenses, and public status.</p></li>
+          <li><span class="stage-number" aria-hidden="true"></span><h3>Maintain</h3><p>Renewals, amendments, reinstatements, payments, and reminders.</p></li>
+          <li><span class="stage-number" aria-hidden="true"></span><h3>Monitor &amp; enforce</h3><p>Complaints, investigations, violations, compliance, and enforcement.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="capabilities">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Product capabilities</span>
+          <h2>Configure the experience and workflow for each regulatory program.</h2>
+          <p>Reusable patterns support applicants, licensees, inspectors, reviewers, program leaders, and members of the public.</p>
+        </div>
+        <div class="capability-grid">
+          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">01</span><h3>Guided Digital Applications</h3><p>Dynamic forms adapt to the program, license or permit type, applicant responses, and regulatory requirements.</p></summary><div class="card-details"><ul><li>Save and resume</li><li>Available data pre-population</li><li>Required-field guidance</li><li>Submission-readiness checks</li></ul></div></details>
+          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">02</span><h3>Rules, Fees &amp; Payments</h3><p>Apply configurable prerequisites and fee schedules through agency-neutral payment connections.</p></summary><div class="card-details"><ul><li>Rules and fee schedules</li><li>Calculated fees and adjustments</li><li>Waivers and online payments</li><li>Refunds and receipts</li><li>Reconciliation support</li></ul></div></details>
+          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">03</span><h3>Documents &amp; Plans</h3><p>Collect supporting documents, drawings, site plans, technical records, and evidence for each case.</p></summary><div class="card-details"><ul><li>File validation</li><li>Version tracking</li><li>Document status</li><li>Reviewer routing</li><li>Repository connections</li></ul></div></details>
+          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">04</span><h3>Application &amp; Plan Review</h3><p>Coordinate administrative, technical, and multi-discipline review for building, zoning, fire, environmental, public works, right-of-way, utilities, and land-use programs.</p></summary><div class="card-details"><ul><li>Multi-agency routing and assignments</li><li>Review checklists</li><li>Plan markup and comments</li><li>Information requests and corrections</li><li>Resubmissions and decision workflows</li></ul></div></details>
+          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">05</span><h3>Issuance &amp; Public Verification</h3><p>Issue licenses, permits, certificates, approvals, and digital credentials with agency-approved public status information.</p></summary><div class="card-details"><ul><li>Issuance history</li><li>Printable and digital artifacts</li><li>Public status verification</li><li>Renew, suspend, reinstate, expire, or revoke where configured</li></ul></div></details>
+          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">06</span><h3>Renewals &amp; Amendments</h3><p>Support pre-populated renewals, amendments, expiration tracking, reinstatement, and associated fees.</p></summary><div class="card-details"><ul><li>Late renewals</li><li>Changes and amendments</li><li>Expiration tracking</li><li>Reinstatement and fees</li><li>Updated permit or credential issuance</li></ul></div></details>
+          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">07</span><h3>Inspections &amp; Field Operations</h3><p>Connect inspection requests, scheduling, assignment, configurable checklists, mobile field work, and follow-up to the regulatory record.</p></summary><div class="card-details"><ul><li>Photos and evidence</li><li>Findings and correction notices</li><li>Reinspections and follow-up</li><li>Field routing where deployed</li><li>Online field workflows</li></ul></div></details>
+          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">08</span><h3>Complaints &amp; Investigations</h3><p>Offer configurable complaint intake, triage, assignment, investigation, correspondence, and case history.</p></summary><div class="card-details"><ul><li>Complaint intake and triage</li><li>Investigator assignment</li><li>Evidence and correspondence</li><li>Findings and case history</li><li>Program-specific workflows</li></ul></div></details>
+          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">09</span><h3>Compliance &amp; Enforcement</h3><p>Track violations, corrective action, deadlines, notices, citations, penalties, and enforcement history for agency action.</p></summary><div class="card-details"><ul><li>Violations and corrective actions</li><li>Notices and compliance deadlines</li><li>Citations, fines, or penalties</li><li>Hearings or appeals where applicable</li><li>Enforcement history and case closure</li></ul></div></details>
+          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">10</span><h3>GIS &amp; Location Intelligence</h3><p>Link records to parcels, addresses, jurisdiction boundaries, zoning context, inspection territories, and regulated locations.</p></summary><div class="card-details"><ul><li>Map-based review</li><li>Location-driven rules</li><li>Flood and environmental context</li><li>Field routing context</li><li>Regulated activity and workload views</li></ul></div></details>
+          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">11</span><h3>Staff Workspaces &amp; Analytics</h3><p>Give agency staff role-based queues, tasks, correspondence, deadlines, workload visibility, and operational metrics.</p></summary><div class="card-details"><ul><li>Volume, workload, and processing time</li><li>Agency and applicant wait time</li><li>Inspection and complaint activity</li><li>Fee and renewal posture</li><li>Compliance, SLA, and statutory metrics</li></ul></div></details>
+          <details class="card"><summary class="card-summary"><span class="card-icon" aria-hidden="true">12</span><h3>APIs, Integrations &amp; Notifications</h3><p>Connect identity, GIS, financial, document, case, and reporting platforms while sending relevant agency notices.</p></summary><div class="card-details"><ul><li>APIs and identity providers</li><li>GIS, address, and payment systems</li><li>Document, case, and reporting platforms</li><li>Email, SMS, status, and information requests</li><li>Inspection, renewal, expiration, and decision notices</li></ul></div></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="architecture">
+      <div class="container architecture-grid">
+        <div class="architecture-copy">
+          <span class="kicker">Architecture &amp; integration model</span>
+          <h2>An engagement layer, not another system of record.</h2>
+          <p>MTX Gov LPI can be delivered on Microsoft, Salesforce, or AWS technology foundations based on agency architecture and delivery needs. Across each option, it coordinates digital experiences and workflow through modular APIs while authoritative agency platforms retain their designated records.</p>
+          <p class="boundary-note"><strong>Agency staff retain decision and approval authority.</strong> MTX Gov LPI supports review and adjudication workflows; it does not replace agency adjudication processes.</p>
+        </div>
+        <div class="stack" role="group" aria-label="MTX Gov LPI architecture stack">
+          <div class="stack-layer"><strong>Constituent and public experiences</strong><span>Applications, payments, uploads, status, renewals, complaints, and public verification</span></div>
+          <div class="stack-layer"><strong>Agency operations</strong><span>Review, issuance, inspections, compliance, enforcement, dashboards, and administration</span></div>
+          <div class="stack-layer platform"><strong>MTX Gov LPI configurable product layer</strong><span>Regulatory workflows + role-based experiences + APIs + analytics</span></div>
+          <div class="foundation-wrap">
+            <span class="stack-caption">Technology foundation options</span>
+            <div class="foundation-row" role="group" aria-label="Available technology foundation options">
+              <div class="foundation">Microsoft</div>
+              <div class="foundation">Salesforce</div>
+              <div class="foundation">AWS</div>
+            </div>
+          </div>
+          <div class="system-row" role="group" aria-label="Integrated agency systems of record">
+            <div class="system">Financial &amp; payment</div>
+            <div class="system">Document management</div>
+            <div class="system">GIS &amp; address data</div>
+            <div class="system">Identity providers</div>
+            <div class="system">Case management</div>
+            <div class="system">Adjudication</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="analytics">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Recommended analytics</span>
+          <h2>Give program leaders a practical view of regulatory operations.</h2>
+          <p>The metrics below are illustrative recommendations for an agency-configured dashboard. They are not production results.</p>
+        </div>
+        <div class="analytics-grid">
+          <div class="dashboard" role="img" aria-label="Illustrative recommended metrics dashboard for program operations">
+            <div class="dashboard-header"><strong>Program operations</strong><span class="illustrative">Illustrative</span></div>
+            <div class="metric-grid">
+              <div class="metric"><strong>Application flow</strong><span>Submitted, incomplete, in review, decided</span></div>
+              <div class="metric"><strong>Processing time</strong><span>By program, stage, and application type</span></div>
+              <div class="metric"><strong>Inspection activity</strong><span>Scheduled, completed, findings, follow-up</span></div>
+              <div class="metric"><strong>Renewal posture</strong><span>Upcoming, submitted, overdue, completed</span></div>
+            </div>
+            <div class="metric-bars" aria-hidden="true">
+              <div class="metric-bar"><span><b>Applications by stage</b><b>Example view</b></span><i class="width-82"></i></div>
+              <div class="metric-bar"><span><b>Inspection completion</b><b>Example view</b></span><i class="width-66"></i></div>
+              <div class="metric-bar"><span><b>Complaint resolution</b><b>Example view</b></span><i class="width-48"></i></div>
+            </div>
+          </div>
+          <div class="metric-list">
+            <article><b aria-hidden="true">A</b><div><h3>Workload &amp; queues</h3><p>Assignments, aging, requests for information, and pending decisions.</p></div></article>
+            <article><b aria-hidden="true">B</b><div><h3>Payments &amp; fees</h3><p>Payment volume, status, outstanding balances, refunds, and reconciliation.</p></div></article>
+            <article><b aria-hidden="true">C</b><div><h3>Complaints &amp; compliance</h3><p>Intake, priority, investigation stage, resolution time, and corrective actions.</p></div></article>
+            <article><b aria-hidden="true">D</b><div><h3>Service experience</h3><p>Application completion, document requests, digital status use, and channel demand.</p></div></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="roadmap">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Staged adoption roadmap</span>
+          <h2>Begin with a priority program, then extend the product foundation.</h2>
+          <p>Phased configuration lets agencies align adoption with policy, program readiness, integration dependencies, and funding.</p>
+        </div>
+        <div class="roadmap">
+          <!-- INTERNAL VALIDATION REQUIRED: confirm supporting evidence before external publication -->
+          <article class="roadmap-card"><span class="roadmap-tag">Stage 1 · Launch</span><h3>Establish a priority program</h3><p>Configure intake, payment, documents, review, issuance, core integrations, reporting, security, accessibility, testing, and training. A typical initial program launch is 60–120 days, depending on scope and integrations.</p></article>
+          <article class="roadmap-card"><span class="roadmap-tag">Stage 2 · Expand</span><h3>Add regulatory workflows</h3><p>Extend inspections, complaints, compliance, renewals, amendments, public verification, and additional license or permit types using shared patterns.</p></article>
+          <article class="roadmap-card"><span class="roadmap-tag">Stage 3 · Assist</span><h3>Introduce governed AI assistance</h3><p>Support applicant guidance, document classification and extraction, plan review assistance, complaint triage, reviewer summaries, suggested correspondence, and exception identification with privacy controls, audit history, and staff review.</p></article>
+        </div>
+        <p class="authority">AI is assistive. Authorized agency staff retain decision and approval authority for licensing, permitting, inspections, compliance, and enforcement actions.</p>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="container cta-grid">
+        <div>
+          <h2>Explore a practical path to modern regulatory services.</h2>
+          <p>Discuss how MTX Gov LPI could support a priority licensing, permitting, or inspections program and connect with the systems your agency already uses.</p>
+        </div>
+        <a class="button button-secondary" href="mailto:info@mtxgroup.com?subject=MTX%20Gov%20LPI%20product%20discussion">Request an MTX Gov LPI discussion</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <span class="footer-brand">MTX Gov LPI</span>
+      <span>Licensing, Permitting &amp; Inspections</span>
+      <span>Product landing-page prototype</span>
+    </div>
+  </footer>
+  <script>
+    const workspaceViews = {
+      plan: {
+        title: 'Building permit plan review',
+        status: 'Technical review in progress',
+        checklist: 'Review checklist',
+        rows: [
+          ['Application & fees', 'Complete', 'width-100'],
+          ['Plan routing', 'Complete', 'width-100'],
+          ['Fire & zoning review', 'In progress', 'width-64'],
+          ['Inspection scheduling', 'Pending', 'width-18']
+        ]
+      },
+      inspection: {
+        title: 'Restaurant inspection field work',
+        status: 'Inspector assigned',
+        checklist: 'Field checklist',
+        rows: [
+          ['Inspection request', 'Scheduled', 'width-100'],
+          ['Inspector assignment', 'Complete', 'width-100'],
+          ['Field findings', 'In progress', 'width-64'],
+          ['Correction follow-up', 'Pending', 'width-18']
+        ]
+      },
+      gis: {
+        title: 'Site permit location review',
+        status: 'Location context available',
+        checklist: 'Location review',
+        rows: [
+          ['Address validation', 'Complete', 'width-100'],
+          ['Parcel and jurisdiction', 'Complete', 'width-100'],
+          ['Zoning context', 'In progress', 'width-64'],
+          ['Inspection territory', 'Ready', 'width-82']
+        ]
+      }
+    };
+
+    const workspaceTabs = document.querySelectorAll('.workspace-tab');
+    const workspaceTitle = document.querySelector('#workspace-title');
+    const workspaceStatus = document.querySelector('#workspace-status');
+    const workspaceChecklist = document.querySelector('#workspace-checklist-title');
+
+    function selectWorkspace(viewName) {
+      const view = workspaceViews[viewName];
+      workspaceTabs.forEach((tab) => {
+        tab.setAttribute('aria-pressed', String(tab.dataset.workspace === viewName));
+      });
+      workspaceTitle.textContent = view.title;
+      workspaceStatus.textContent = view.status;
+      workspaceChecklist.textContent = view.checklist;
+      view.rows.forEach((row, index) => {
+        document.querySelector(`[data-workspace-label="${index}"]`).textContent = row[0];
+        document.querySelector(`[data-workspace-value="${index}"]`).textContent = row[1];
+        document.querySelector(`[data-workspace-meter="${index}"]`).className = row[2];
+      });
+    }
+
+    workspaceTabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => selectWorkspace(tab.dataset.workspace));
+      tab.addEventListener('keydown', (event) => {
+        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        const nextIndex = event.key === 'Home' ? 0 : event.key === 'End' ? workspaceTabs.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + workspaceTabs.length) % workspaceTabs.length;
+        workspaceTabs[nextIndex].focus();
+        selectWorkspace(workspaceTabs[nextIndex].dataset.workspace);
+      });
+    });
+  </script>
+</body>
+</html>
