@@ -33,6 +33,16 @@ The platform\-agnostic copy and architecture visual pass HTML validation, a Ligh
 
 The requested lifecycle, 12 capability titles, assistive AI boundary, agency decision authority, and internal quantitative\-claim comments remain in place. Expandable capability details now cover the requested LPI functions while preserving concise summaries and the existing interaction pattern. HTML parsing, content assertions, prohibited\-language checks, and external link checks pass. Manual browser QA passes at desktop and 400px mobile widths with no clipping or horizontal overflow. Navigation, mobile menu, card disclosure controls, hero workspace mouse and keyboard controls, visible focus, and console checks pass. The deployable branch is rooted in `MTXElectionSolutions/main` and is published for review.
 
+## Election Management Content Correction
+
+* [x] Review the supplied MTX election materials, current site structure, and public election\-administration sources.
+* [x] Define an election lifecycle and 12 concise capabilities spanning voter, election, ballot, candidate, campaign finance, reporting, security, and integrations.
+* [x] Replace LPI terminology throughout metadata, hero, challenges, lifecycle, capabilities, architecture, analytics, roadmap, CTA, and interactive workspace.
+* [x] Retain the existing design, responsive behavior, accessibility, navigation, card disclosures, and assistive AI boundaries.
+* [x] Flag unsupported quantitative claims for internal validation.
+* [ ] Run static, browser, mobile, keyboard, link, terminology, and console QA.
+* [ ] Commit, publish, open a pull request, and document the review result.
+
 ## Industry Pain Points Update
 
 * [x] Research credible public\-sector sources on legacy licensing and permitting challenges.
