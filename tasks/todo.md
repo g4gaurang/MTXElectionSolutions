@@ -17,3 +17,14 @@
 ## Review
 
 Repository scanning found and removed obsolete naming from the README, workflow label, and internal task notes; the rendered page contains no unrelated product terminology. The page now uses `MTX Elections` throughout and includes the requested lifecycle, 12 capabilities, interactive Election Operations Center, five role experiences, election analytics, 12 integration targets, four security and audit control areas, and election\-official authority boundaries. Static parsing, required\-content assertions, full tracked\-file terminology scans, prohibited\-language checks, and external link checks pass. Fresh\-port browser QA passes on desktop and at 400px with working navigation, disclosures, Operations Center mouse and keyboard controls, visible focus, no clipping or horizontal overflow, and no console errors. GitHub Pages deployed the validated revision successfully, and the published URL returned the `MTX Elections` title, hero, lifecycle, capabilities, Operations Center, experiences, architecture, analytics, and authority statement.
+
+## Voting and Tabulation Boundary
+
+* [x] Audit tracked files and rendered copy for voting, counting, tabulation, ballot generation, results, canvass, and certification terminology.
+* [x] Replace ambiguous MTX capability language with election administration, polling operations, coordination, ingestion, reporting, reconciliation, and support terminology.
+* [x] Refine ballot preparation and production coordination without implying executable ballot generation.
+* [x] Refine results, canvass, and certification support around external tabulation result feeds.
+* [x] Label certified tabulation and results systems as external architecture connections.
+* [x] Preserve the existing visual design, interactions, responsive behavior, imagery, and deployment configuration.
+* [ ] Run static, repository, link, desktop, mobile, keyboard, console, and live deployment QA.
+* [ ] Commit, publish, merge, deploy, and document the result.

@@ -4,5 +4,6 @@
 * Distinguish the prototype baseline from the deployment repository; confirm which repository receives the finished site before configuring remotes.
 * Treat the repository name as a content boundary: `MTXElectionSolutions` must publish election\-management content, even when another prototype is supplied as a visual baseline.
 * For domain corrections, audit the complete rendered and hidden surface: product naming, metadata, imagery, navigation, interactions, analytics, personas, integrations, comments, and deployment output.
+* In election product copy, reserve vote capture and tabulation for external certified systems; describe MTX functions as administration, coordination, ingestion, reporting, reconciliation, and workflow support.
 * For RFP and RFI content, avoid hyperbole and absolute commitments; use qualified, source\-backed language.
 * When product platform positioning changes, scan metadata, hero copy, architecture copy, and diagrams so the update is consistent.
